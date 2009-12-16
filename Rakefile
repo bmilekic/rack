@@ -6,6 +6,19 @@ require 'rake/testtask'
 desc "Run all the tests"
 task :default => [:test]
 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "bloom-rack"
+    gemspec.summary = "A forked rack/rack with fix to multipart parser"
+    gemspec.description = "See http://groups.google.com/group/rack-devel/browse_thread/thread/ce7315f79cf0cdfc for details"
+    gemspec.email = "bosko@bloomdigital.com"
+    gemspec.homepage = "http://github.com/bloom/rack"
+    gemspec.authors = ["bmilekic", "minaguib", "gdi"]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install jeweler"
+end
 
 desc "Make an archive as .tar.gz"
 task :dist => [:chmod, :changelog, :rdoc, "SPEC", "rack.gemspec"] do
